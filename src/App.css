@@ -1,38 +1,174 @@
-.App {
-  text-align: center;
+.game-container {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  outline: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bird {
+  width: 80px;
+  height: 80px;
+  background: none;
+  border-radius: 50%;
+  position: absolute;
+  left: 100px;
+  transition: top 0.2s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Header CSS */
+
+.header {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  z-index: 10;
+}
+
+.info {
+  font-size: 1.5rem;
   color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.controls .btn {
+  margin-left: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.pause, .restart, .back, .play-again{
+  background: linear-gradient(to bottom, #1973a2, #03182b); 
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.pause:hover, .restart:hover, .back:hover, .play-again:hover {
+  transform: scale(1.1);
+  background: linear-gradient(to bottom, #1a8bbf, #04345d); /* Slightly brighter gradient for hover */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.pause:active, .restart:active, .back:active, .play-again:active{
+  background: linear-gradient(to bottom, #135f7c, #021625);
+  box-shadow: inset 0 2px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+}
+/* General pillar styling */
+.pillar {
+  width: 50px;
+  position: absolute;
+  bottom: 0;
+  transition: left 0.1s linear;
+}
+
+/* Top pillar styling */
+.pillar.top {
+  bottom: auto;
+  top: 0;
+}
+
+/* Bottom pillar styling */
+.pillar.bottom {
+  top: auto; 
+  bottom: 0;
+}
+
+/* Ensure images scale nicely */
+.pillar {
+  background-size: cover;
+  background-repeat: no-repeat; 
+}
+
+
+
+/* EndScreen CSS */
+
+.end-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 20; 
+}
+
+.end-screen .stats {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+.end-screen .actions .btn {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.actions .btn:hover {
+  transform: scale(1.1);
+}
+
+
+@media (max-width: 500px) {
+  .header .info {
+    font-size: 1rem; 
+    text-align: left;
   }
-  to {
-    transform: rotate(360deg);
+
+  .header .controls .btn {
+    font-size: 0.8rem; /* Buttons ka text chhota kar diya */
+    padding: 8px 15px; /* Buttons ka size reduce kiya */
+  }
+
+  .pause, .restart, .back, .play-again {
+    font-size: 0.9rem; /* Buttons ke labels ka size adjust kiya */
+    padding: 8px 15px; /* Buttons ka padding chhota kiya */
+    margin-left: 5px; /* Margin reduce kiya */
+  }
+
+  .end-screen {
+    padding: 10px; /* End screen ka padding reduce kiya */
+    font-size: 0.9rem; /* Text size chhota kiya */
+  }
+
+  .end-screen .stats {
+    font-size: 0.8rem; /* End screen ke stats ka size adjust kiya */
+  }
+
+  .end-screen .actions .btn {
+    font-size: 0.8rem; /* End screen buttons ke text ka size adjust kiya */
+    padding: 8px 12px; /* Buttons ka padding reduce kiya */
   }
 }
